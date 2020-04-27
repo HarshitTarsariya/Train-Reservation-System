@@ -1,0 +1,39 @@
+{% extends 'header.html' %}
+
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Details</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/header.css" >
+	<link rel="stylesheet" type="text/css" href="/static/css/home.css" >
+    <style>
+        table,td,th,tr{
+            padding-top : 50px;
+            padding-left : 150px;
+            padding-right : 50px;
+            border : 10px;
+            text-align : left ;
+        }
+    </style>
+</head>
+<body>
+    <form action="/book/payment/" method="POST">
+    <table colspan="4">
+        <tr ><th><h3><u>Sr</u></h3></th><th><h3><u>First Name</u></h3></th><th><h3><u>Last Name</u></h3></th><th><h3><u>Age</u></h3></th></tr>
+        {% for i in totalseats %}
+            <tr>
+                <td><h3>{{i}}</h3></td></td><td><div class="box5"><input type="text" name="fname{{i}}" class=i1 placeholder="First Name" size="15%" required /></div></td>
+                <td><div class="box5"><input type="text" name="lname{{i}}" class=i1 placeholder="Last Name" size="15%" required /></div></td>
+                <td><div class="box5"><input type="text" name="age{{i}}" class=i1 placeholder="Age" size="15%" required /></div></td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <td></td><td></td><td><div class="box4"><input type="submit" class=button name="search" value="BOOK" ></div></td><td></td>
+        </tr>
+    </table>
+
+    </form>
+</body>
+</html>
+{% endblock %}

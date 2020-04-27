@@ -1,0 +1,42 @@
+					REQUIREMENTS
+
+
+1.Project Title:
+		Trainreservation System
+
+2.Python Version:
+		3.8.2
+
+3.Django Version :
+		3.0.3
+
+4.List of requirments implemented:
+				There is no other package used and imported.
+				
+	
+	1.Registration page
+
+	2.Login page
+
+	3.Forgot password:
+			In this forgot  password  ,there is need of otp which is send to registered email address and you can reset password.(Network is required for email.)
+	
+	4.Show trains page :
+			This page shows available trains list for your journey.
+	
+	5.Book trains page:
+	
+	6.Get details page:
+			Where  we have to give our name and age for booking complete.
+	
+	7.Payment page:
+			After get details page,ticket booking is completed and ,your ticket and confirmation of booking is sent to the registered mail.(Network is required for email.)
+	
+	8.Cancel ticket:
+			Here we can cancel ticket using pnr number.
+
+
+		Here , trainreservation.sql is given.because one of table (book_train_detail) requires preadded data for train information.
+
+
+**CHANGE THE HOST MAIL ID AND PASSWORD IN SETTINGS.PY FOR ENABLING MAIL SERVICES**

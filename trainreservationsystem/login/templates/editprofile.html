@@ -1,0 +1,91 @@
+{% extends 'header.html' %}
+
+{% block content %}
+<html lang="en">
+<head>
+	<title>Edit Profile</title>
+    <style>
+		.alert {
+          padding: 20px;
+          background-color: #f44336;
+          color: white;
+        }
+
+        .closebtn {
+          margin-left: 15px;
+          color: white;
+          font-weight: bold;
+          float: right;
+          font-size: 22px;
+          line-height: 20px;
+          cursor: pointer;
+          transition: 0.3s;
+        }
+
+        .closebtn:hover {
+          color: black;
+        }
+        </style>
+		<link rel="stylesheet" type="text/css" href="/static/css/header.css" >
+</head>
+<body>
+	<div class="limiter">
+		<div class="co" style="background-image: url('/static/images/login.jpg'); background-size:cover;">
+			<div class="wrap">
+				{% if error %}
+				<div class=alert><span class=closebtn onclick="this.parentElement.style.display='none'">&times;</span>
+                                   <strong>{{ error }} </strong></div>'
+				{% endif %}
+				<form class="login-form validate-form" action="/login/editdata/" method="POST">
+					{% csrf_token%}
+					<span class="login-form-logo">
+						<i class="zmdi zmdi-landscape"></i>
+					</span>
+
+					<span class="login-form-title p-b-20 p-t-10">
+						Edit Profile
+					</span>
+                    {% for each in detail %}
+					<div class="wrap-input validate-input">
+						<input class="input" type="text" name="fullname" placeholder="Full Name" value="{{ each.fullname }}" required>
+						<span class="focus-input" data-placeholder="&#xf207;"></span>
+					</div>
+
+					<div class="row">
+
+						<div class="col-md-4">
+						<input type="radio" name="gender" value="male" {% if each.male is not empty %} checked {% endif %}> Male</div>
+						<div class="col-md-4">
+                        <input type="radio" name="gender" value="female" {% if each.female is not empty %} checked {% endif %}> Female</div>
+					</div>
+					<br>
+
+					<div class="wrap-input validate-input">
+                                            <input class="input" type="email" name="email" placeholder="Email Id" pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$" value="{{ each.email }}" required />
+						<span class="focus-input" data-placeholder="&#x2709;"></span>
+					</div>
+
+					<div class="wrap-input validate-input">
+						<input class="input" type="date" name="birthdate" placeholder="Birth Date" value="{{ each.birthdate }}" required />
+						<span class="focus-input" data-placeholder="&#x1F5D3;"></span>
+					</div>
+
+					<div class="wrap-input validate-input">
+						<input class="input" type="text" name="mobileno" placeholder="Mobile Number" pattern="\d{10}" value="{{ each.mobileno }}" required>
+						<span class="focus-input" data-placeholder="&#x2706;"></span>
+					</div>
+                    {% endfor %}
+					<br>
+					<div class="container-login-form-btn">
+						<button class="login-form-btn">
+							Change
+						</button>
+					</div>
+					<br>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+{% endblock %}

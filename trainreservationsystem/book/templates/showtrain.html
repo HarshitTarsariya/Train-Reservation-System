@@ -1,0 +1,63 @@
+{% extends 'header.html' %}
+{% block content %}
+<html>
+	<head>
+		<title>Show Train</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+			<link rel="icon" type="image/png" href="/static/images/icons/favicon.ico"/>
+			<link rel="stylesheet" type="text/css" href="/static/vendor/bootstrap/css/bootstrap.min.css">
+			<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+			<link rel="stylesheet" type="text/css" href="/static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+			<link rel="stylesheet" type="text/css" href="/static/fonts/iconic/css/material-design-iconic-font.min.css">
+			<link rel="stylesheet" type="text/css" href="/static/css/util.css">
+			<link rel="stylesheet" type="text/css" href="/static/css/main.css">
+			<link rel="stylesheet" type="text/css" href="/static/css/showtrain.css">
+			<link rel="stylesheet" type="text/css" href="/static/css/header.css">
+	</head>
+	<body >
+	<div class="co" style="background-image: url('/static/images/login.jpg'); background-size:cover;">
+		{% if avail_trains %}
+			<table>
+				<tr>
+					 <th>Train Name</th>
+					 <th>Source</th>
+					 <th>Destination</th>
+					 <th>Departure Time</th>
+					 <th>Arrival Time</th>
+					 <th>Distance (KM)</th>
+				</tr>
+				<div id="demo">
+					 {% for each in avail_trains %}
+						  <tr >
+							<td> {{ each.trainname }} </td>
+							<td> {{ each.dname }} </td>
+							<td> {{ each.aname }}</td>
+							<td> {{ each.dtime }} </td>
+							<td> {{ each.atime}}</td>
+							<td> {{ each.distance}}</td>
+						  </tr>
+					 </div>
+					 <tr>
+					 <form action="/book/book/" method="POST">
+					 {% csrf_token %}
+							 <td colspan="7"><center><input type="submit" class="btn btn-success" value="BOOK" id="a" name="book_now"/>
+							<input class="hidden_input" name="trainno" type="hidden" value="{{ each.trainno }}"/>
+							<input class="hidden_input" name="aid" type="hidden" value="{{ each.aid }}"/>
+							<input class="hidden_input" name="did" type="hidden" value="{{ each.did }}"/>
+							<input class="hidden_input" name="dname" type="hidden" value="{{ each.dname }}"/>
+							<input class="hidden_input" name="aname" type="hidden" value="{{ each.aname }}"/>
+							<input class="hidden_input" name="date" type="hidden" value="{{ each.date }}"/></center></td>
+					 </form>
+					 </tr>
+					 {% endfor %}
+					</table>
+				<br/><br/><br/><br/>
+		{% else %}
+			<table>
+				<th><h1 style="color:red">Sorry, No Trains are Available</h1></th>
+			</table>
+		{% endif %}
+		</div>
+	</body>
+</html>
+{% endblock %}

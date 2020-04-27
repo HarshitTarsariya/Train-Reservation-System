@@ -1,0 +1,78 @@
+{% extends 'header.html' %}
+
+{% block content %}
+<html lang="en">
+<head>
+	<title>Login</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="/static/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="/static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="/static/fonts/iconic/css/material-design-iconic-font.min.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/util.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/main.css">
+	<link rel="stylesheet" href="/static/cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/header.css" >
+</head>
+<body>
+	<div class="limiter">
+		<div class="co" style="background-image: url('/static/images/login.jpg'); background-size:cover;">
+			<div class="wrap">
+				{% if error %}			<!--for wrong credentials-->
+				<div class=alert><span class=closebtn onclick="this.parentElement.style.display='none'">&times;</span>
+					<h7 style="color:red">{{ error }} </h7></div>
+				{% endif %}
+				{% if msg %}
+				<div class=success><span class=closebtn onclick="this.parentElement.style.display='none'">&times;</span>
+                                   <strong>{{ msg }} </strong></div>	<!-- Password changed message-->
+				{% endif %}
+				<form class="login-form validate-form" action="/login/verification/" method="POST">
+					{% csrf_token%}
+					<span class="login-form-logo">
+						<i class="zmdi zmdi-landscape"></i>
+					</span>
+
+					<span class="login-form-title p-b-34 p-t-27">
+						Log in
+					</span>
+
+					<div class="wrap-input validate-input" data-validate = "Enter username">
+						<input class="input" type="text" name="username" placeholder="Username" maxlength="15" minlength="6" required>
+						<span class="focus-input" data-placeholder="&#xf207;"></span>
+					</div>
+
+					<div class="wrap-input validate-input" data-validate="Enter password">
+						<input class="input" type="password" name="password" placeholder="Password" maxlength="14" minlength="6" required>
+						<span class="focus-input" data-placeholder="&#xf191;"></span>
+					</div>
+
+					<div class="container-login-form-btn">
+						<button class="login-form-btn">
+							Login
+						</button>
+					</div>
+					<div class="row">
+					<div class="col-md-6">
+					<div class="text-center p-t-40">
+						<a class="txt1" href="/login/registration/">
+							New User?
+						</a>
+					</div>
+					</div>
+					<div class="col-md-6">
+					<div class="text-center p-t-40">
+						<a class="txt1" href="/login/forgotpassword/">
+							Forgot Password?
+						</a>
+					</div>
+					</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div id="dropDownSelect1"></div>
+</body>
+</html>
+{% endblock %}

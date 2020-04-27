@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Registration</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="/static/images/icons/favicon.ico"/>
+	<link rel="stylesheet" type="text/css" href="/static/vendor/bootstrap/css/bootstrap.min.css">
+         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="/static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="/static/fonts/iconic/css/material-design-iconic-font.min.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/util.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/main.css">
+</head>
+<body>
+
+	<div class="limiter">
+		<div class="co" style="background-image: url('/static/images/login.jpg'); background-size:cover;">
+			<div class="wrap">
+				{% if error %} 				<!-- username already taken error or both password doesnot matches -->
+				<div class=alert><span class=closebtn onclick="this.parentElement.style.display='none'">&times;</span>
+                                   <strong>{{ error }} </strong></div>'
+				{% endif %}
+				<form class="login-form validate-form" action="/login/registrationdata/" method="POST">
+					{% csrf_token%}
+					<span class="login-form-logo">
+						<i class="zmdi zmdi-landscape"></i>
+					</span>
+
+					<span class="login-form-title p-b-20 p-t-10">
+						Sign UP
+					</span>
+					<div class="row">
+						<div class="col-md-6">
+						<div class="wrap-input validate-input" >
+						<input class="input" type="text" name="firstname" placeholder="First Name" required>
+						<span class="focus-input" data-placeholder="&#xf207;"></span>
+					</div></div>
+						<div class="col-md-6">
+						<div class="wrap-input validate-input" >
+						<input class="input" type="text" name="lastname" placeholder="Last Name"required>
+						<span class="focus-input" data-placeholder="&#xf207;"></span>
+					</div></div>
+					</div>
+					<div class="wrap-input validate-input">
+						<input class="input" type="text" name="username" placeholder="Username" maxlength="15" minlength="6" required>
+						<span class="focus-input" data-placeholder="&#xf207;"></span>
+					</div>
+
+					<div class="row">
+						<div class="col-md-4">
+						<input type="radio" name="gender" value="male" checked> Male</div>
+						<div class="col-md-4">
+                        <input type="radio" name="gender" value="female"> Female</div>
+					</div>
+					<br>
+
+					<div class="wrap-input validate-input">
+						<input class="input" type="email" name="email" placeholder="Email Id" pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$" required />
+						<span class="focus-input" data-placeholder="&#x2709;"></span>
+					</div>
+
+					<div class="wrap-input validate-input">
+						<input class="input" type="date" name="birthdate" placeholder="Birth Date" max="2001-01-01" required/>
+						<span class="focus-input" data-placeholder="&#x1F5D3;"></span>
+					</div>
+
+					<div class="wrap-input validate-input">
+						<input class="input" type="text" name="mobileno" placeholder="Mobile Number" pattern="\d{10}" required>
+						<span class="focus-input" data-placeholder="&#x2706;"></span>
+					</div>
+
+					<div class="wrap-input validate-input">
+						<input class="input" type="password" name="password" placeholder="Password" maxlength="14" minlength="8"  required>
+						<span class="focus-input" data-placeholder="&#xf191;"></span>
+					</div>
+
+					<div class="wrap-input validate-input">
+						<input class="input" type="password" name="confirmpassword" placeholder="Confirm Password" maxlength="14" minlength="8" required>
+						<span class="focus-input" data-placeholder="&#xf191;"></span>
+					</div>
+
+					<input type="checkbox" name="agree" required /> I have read and agreed with Terms and Conditions.
+					<br>
+					<br>
+					<div class="container-login-form-btn">
+						<button class="login-form-btn">
+							Sign Up
+						</button>
+					</div>
+					<br>
+					<div class="text-center p-t-10">
+					Already have an account?
+						<a class="txt1" href="/login/">
+							Login
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div id="dropDownSelect1"></div>
+	<footer class="footer" class="container">
+		<center>
+			<a href="https://www.facebook.com/" class="fa fa-facebook"></a>
+			<a href="https://twitter.com/login" class="fa fa-twitter"></a>
+			<a href="https://www.google.com/" class="fa fa-google"></a>
+			<a href="https://www.linkedin.com/uas/login" class="fa fa-linkedin"></a>
+		</center>
+		<hr>
+		<div class="text-center p-t-40">
+			<a href="/base/aboutus/">ABOUT US</a><br>
+			<a href="/base/contactus/">&#x260F; CONTACT US</a><br>
+			<br>
+		</div>
+		&#169;  All Rights Reserved .2020
+	</footer>
+</body>
+</html>

@@ -1,0 +1,97 @@
+{% extends 'header.html' %}
+{% block content %}
+<html>
+<head>
+	<title>Home Page</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="/static/css/header.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/home.css">
+</head>
+<body >
+			{% if error %}
+				<div class=alert><span class=closebtn onclick="this.parentElement.style.display='none'">&times;</span>
+                                   <strong>{{ error }} </strong></div>
+			{% endif %}
+		<div style="margin-top:8%">
+		<div style="overflow-x:auto">
+			<table>
+				<tr>
+					<td id=a1><button class="btn 1" onclick="searchTrain()"><b>SEARCH TRAINS</b></button></td>
+					<td id=a1><button class="btn 1" onclick="cancelTicket()"><b>CANCEL TICKET</b></button></td>
+				</tr>
+			</table>
+		</div>
+	</div>    
+    
+	<div id=a2>
+		<fieldset id =fbg>
+		<form action="/book/showtrain/" method="POST">
+			{% csrf_token %}
+		<div class="wrapper">
+			<div class="box1">&#128649; From</div>
+			<div class="box2">&#128649; To</div>
+			<div class="box3">&#128197; Date</div>
+			<div class="box4"><input type="submit" class=button name="search" value="SEARCH" ></div>
+			<div class="box5">
+				<select name="departcity">
+					{% for station in stationname %}
+						<option value="{{station}}">{{station}}</option>
+					{% endfor %}
+				</select>
+			</div>
+			<div class="box6">
+				<select name="arrivedcity" >
+					{% for station in stationname %}
+						<option value="{{station}}">{{station}}</option>
+					{% endfor %}
+				</select>
+			</div>
+			<div class="box7"><input type="date" name="date" class=i3 size="15%" min="{{date}}" required /></div>
+		</div>
+		</form>
+			{% if same %}
+				<h5 style="color:red">Invalid Station Selection</h5>
+			{% endif %}
+			{% if mmm %}
+				<h5 style="color:red">{{mmm}}</h5>
+			{% endif %}
+		</fieldset>
+	</div>
+	<script>
+         function searchTrain(){
+			 var line ='<form action="/book/showtrain/" method="POST">';
+			 line += '{% csrf_token %}';
+			 line += '<div class="wrapper">';
+			 line += '<div class="box1">&#128649; From</div>';
+			 line += '<div class="box2">&#128649; To </div>';
+			 line += '<div class="box3">&#128197; Date</div>';
+			 line += '<div class="box4"><input type="submit" class=button name="search" value="SEARCH" ></div>';
+			 line += '<div class="box5"><select name="departcity" >{% for station in stationname %}<option value="{{station}}">{{station}}</option>{% endfor %}</select></div>';
+			 line += '<div class="box6"><select name="arrivedcity" >{% for station in stationname %}<option value="{{station}}">{{station}}</option>{% endfor %}</select></div>';
+			 line += '<div class="box7"><input type="date" name="date" class=i3 size="15%" min={{date}} required ></div>';
+			 line += '</div>';
+			 line += '</form>';
+			 document.getElementById('fbg').innerHTML = line ;
+         }
+    	 function cancelTicket(){
+			 var line ='<form action="/book/cancelticket/" method="POST">';
+			 line += '{% csrf_token %}';
+			 line += '<div class="wrapper">';
+			 line += '<div class="box1">&#128648; Enter PNR Number</div>';
+			 line += '<div class="box4"><input type="submit" class=button name="search" value="CANCEL" ></div>';
+			 line += '<div class="box5"><input type="text" name="pnrno" class=i1 size="20" required ></div>';
+			 line += '</div>';
+			 line += '</form>';
+			 document.getElementById('fbg').innerHTML = line ;
+         }
+		</script>
+	</body>
+</html>
+<br><br>
+<br><br>
+<br><br>
+<br><br><br><br>
+<br><br>
+<br><br>
+
+{% endblock %}
